@@ -380,7 +380,7 @@ class parse_selection(object):
         # Special check for a single literal
         # TODO: These classes are deprecated since 3.8 and replaced with ast.Constant,
         # but that substitution breaks behavior
-        if isinstance(astnode, (ast.Num, ast.Str)):
+        if isinstance(astnode, ast.Constant):
             raise ValueError(
                 "Cannot use a single literal as a boolean. "
                 f"Choked on node with value {astnode.value}"
