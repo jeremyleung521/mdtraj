@@ -250,7 +250,6 @@ metadata = \
       cmdclass={'build_ext': build_ext},
       install_requires=['numpy>=1.6',
                         'scipy',
-                        'astunparse',
                         'pyparsing',
                         'packaging',
                         ],

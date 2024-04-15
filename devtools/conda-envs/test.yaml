@@ -9,7 +9,6 @@ dependencies:
   - numpy
   - zlib
   - pyparsing
-  - astunparse
   - scipy
   - networkx
   - pandas

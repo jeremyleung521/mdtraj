@@ -28,7 +28,6 @@ from collections import namedtuple
 from pyparsing import (Word, ParserElement, MatchFirst,
     Keyword, opAssoc, quotedString, alphas, alphanums, infixNotation, Group,
     ParseException, OneOrMore)
-import astunparse
 
 # this number arises from the current selection language, if the cache size is exceeded, it hurts performance a bit.
 ParserElement.enablePackrat(cache_size_limit=304)
@@ -392,7 +391,7 @@ class parse_selection(object):
                                   defaults=[], kw_defaults=[])
 
         func = ast.Expression(body=ast.Lambda(signature, astnode))
-        source = astunparse.unparse(astnode)
+        source = ast.unparse(astnode)
 
         expr = eval(
             compile(ast.fix_missing_locations(func), '<string>', mode='eval'),
