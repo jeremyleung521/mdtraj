@@ -26,8 +26,11 @@ trajectories in a variety of formats, including Gromacs XTC & TRR, CHARMM/NAMD
 DCD, PDB, and HDF5.
 """
 
+from warnings import warn
+from packaging.version import Version
+
 # silence cython related numpy warnings, see github.com/numpy/numpy/pull/432
-import numpy as _  # noqa
+import numpy as np
 from mdtraj.core import element
 from mdtraj.core.topology import Amide, Aromatic, Double, Single, Topology, Triple
 from mdtraj.core.trajectory import (
@@ -210,6 +213,12 @@ __all__ = (
     "compute_chemical_shifts",
     "reindex_dataframe_by_atoms",
 )
+
+
+# Band-aid for NEP50
+if Version(np.__version__)>=Version('2.0.0a0'):
+    np._set_promotion_state('legacy')
+    warn('To quickly make mdtraj compatible with Numpy 2, we are globally changing the numpy promotion behavior to match that from Numpy 1.X to bypass changes introduced in NEP50. This might affect other programs.', UserWarning)
 
 
 def capi():
