@@ -1,6 +1,5 @@
 name: mdtraj-test
 channels:
-  - conda-forge/label/python_rc
   - conda-forge
 dependencies:
   # Core
